@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div id="timer"><h2>TIMER: 30</h2></div>
+    <div id="question"></div>
+    <div id="choices"></div>
+    <div id="answers"></div>
+    <div id="results"></div>
+    <br>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.js"></script>
+    <script>
+        var countdown = 30; //For timer
+        
+
+        //Object array for each question
+        var questions = [{
+            questionNumber: '1',
+            question: 'What is my name?',
+            choices: ['David', 'Jeff', 'Phil', 'Mary'],
+            correctAnswer: 'David',
+            image: 'assets/images/question1.jpg'
+        }, {
+            questionNumber: '2',
+            question: 'Where do I live',
+            choices: ['Orlando', 'Jeff', 'Phil', 'Mary'],
+            correctAnswer: 'Orlando',
+            image: 'assets/images/question1.jpg'
+        }]
+
+
+        var i = 0; //Will add a loop after testing
+
+                var counter = 30;
+                var interval = setInterval(function() {
+                counter--;
+
+                $('#timer').html("<h2>Timer: " + counter + "</h2>");
+                
+                 if (counter == 0) {
+                    $("#answers").html('Correct Answer: ' + questions[i].correctAnswer + '<br>');
+                    $("#answers").append('<button class=nextQuestion>Next Button</button><p>Text</p>')
+
+                // Display a login box
+                clearInterval(interval);
+                }
+
+                $("p").click(function(){
+                alert("The paragraph was clicked.");
+                });
+                 }, 1000);
+
+                
+
+
+        $("#choices").html('Question: ' + questions[i].question + '<br>'); //Displays question
+
+
+        // displays the buttons that user will answer
+        for (var q = 0; q < questions[i].choices.length; q++) {
+
+
+
+            // $("#answers").append("<div class=buttonQuestion data-num=" + questions[i].choices[q] + ">" + questions[i].choices[q] +"</div>")
+
+            var buttonQuestion = $('<button>');
+
+            var buttonText = questions[i].choices[q];
+
+            buttonQuestion.attr('data-num', questions[i].choices[q]);
+
+            buttonQuestion.addClass('buttonQuestion');
+
+            console.log (buttonText);
+
+            
+
+            $('#answers').append(buttonQuestion);
+
+            $(".buttonQuestion").append(buttonText); 
+
+            //console.log (buttonText);
+
+          
+
+
+           // console.log(buttonQuestion.data('num'));
+
+
+            //$("#answers").append('<button>' + questions[i].choices[q]) + '</button>';
+
+        }
+
+
+
+        console.log(questions[i].correctAnswer);
+
+        $(document.body).on('click', '.buttonQuestion', function(){
+
+            console.log('Correct Answer: ' + questions[i].correctAnswer);
+            console.log('Selected Answer: ' + buttonQuestion.data('num')) // Returns the very last data-num value assigned for all of the buttons
+            console.log('This: ' + $(this).data('num')) // Returns the correct data-num value assigned for all of the buttons
+
+            console.log("click");
+            if ($(this).data('num') == questions[i].correctAnswer) { // How $(this) is used to evaluate the correct choice
+                console.log("WIN")
+                $("#results").html('You Win');
+            } else {
+                console.log('LOSE')
+                $("#results").html('You Lose');
+            }
+
+
+        });
+
+
+
+
+        // //CODE BELOW DOES NOT WORK!!! Will be if button is clicked see which  answer was chosen and if answer chosen is right answer say win, else display loss
+        // $('buttonQuestion').on('click', function() {
+        //     console.log("click");
+        //     if (buttonQuestion.data('num') == questions[i].correctAnswer) {
+        //         console.log("WIN")
+        //         $("#results").html('You Win');
+        //     } else {
+        //         console.log('LOSE')
+        //         $("#results").html('You Lose');
+        //     }
+        // })
+        
+
+        //Change out q with questionNumber++, and have a next question button with question number moving through all questions
+        //if (questionNumber === questions.length) {  
+        //}
+
+        //Start On Click
+        //Submit On Click??
+
+        // var game = {
+
+        //     //Variables
+
+        //     questionNumber: 0,
+        //     correctAnswers: 0,
+        //     wrongAnswers: 0,
+
+
+        //     //Functions
+
+        //     timer: function() {
+
+        //     }
+
+        //     startGame: function() {
+
+        //     }
+
+        //     reset: function() {
+
+        //     }
+
+        //     checkGuess: function() {
+        //         questionNumber++;
+        //          if (questionNumber === questions.length) {  
+        //         }
+
+        //     }
+        //      printQuestions: function() {
+
+        //      }    
+            
+
+
+
+
+        // }
+    </script>
+
+
+
+
+</body>
+</html>

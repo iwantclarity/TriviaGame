@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="question"></div>
+    <div id="choices"></div>
+    <div id="answers"></div>
+    <div id="results"></div>
+    <br>
+    <button id="stop">Stop</button>
+    <button id="resume">Resume</button>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.js"></script>
+    <script>
+        var number = 30;
+
+
+        var questions = [{
+            questionNumber: '1',
+            question: 'What is my name?',
+            choices: ['David', 'Jeff', 'Phil', 'Mary'],
+            correctAnswer: 'David', 
+            image: 'assets/images/question1.jpg'
+           },
+           {
+            questionNumber: '2',
+            question: 'Where do I live',
+            choices: ['Orlando', 'Jeff', 'Phil', 'Mary'],
+            correctAnswer: 'Orlando', 
+            image: 'assets/images/question1.jpg'}]
+
+
+             var i = 0;
+
+
+
+           $("#choices").html('Question ' + questions[i].question + '<br>');
+
+           for (var q = 0; q < questions[i].choices.length; q++){
+
+
+           $("#answers").append('<button>' + questions[i].choices[q]) + '</button>';
+
+       }
+
+       //CODE BELOW DOES NOT WORK!!!
+
+        $('questions[i].choices[q]').on('click', function() {
+          if (questions[i].choices[q] === questions[i].correctAnswer) {
+            $("#results").html('You Win');
+          } else {
+            $("#results").html('You Lose');
+          }
+        })
+
+        
+
+    </script>
+
+
+
+
+</body>
+</html>
